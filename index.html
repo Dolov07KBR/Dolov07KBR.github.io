@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dolov07KBR — проекты DF</title>
+<meta name="description" content="Проекты @Dolov07KBR: Telegram-бот продажи VPN, надстройка Zapret-Manager PLUS, IPTV-плейлисты и другие открытые инструменты.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<style>
+  :root{
+    --bg:#0b1020; --bg2:#0e1630; --card:#121a35; --line:rgba(139,92,246,.25);
+    --text:#e7ecff; --muted:#93a0c8; --violet:#8b5cf6; --cyan:#22d3ee;
+    --grad:linear-gradient(90deg,#8b5cf6,#22d3ee);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',Arial,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:-1;
+    background:
+      radial-gradient(600px 400px at 15% -5%, rgba(139,92,246,.22), transparent 60%),
+      radial-gradient(700px 450px at 90% 10%, rgba(34,211,238,.14), transparent 60%),
+      radial-gradient(800px 600px at 50% 110%, rgba(59,130,246,.12), transparent 60%);
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  /* ---------- шапка ---------- */
+  header{
+    position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+    background:rgba(11,16,32,.72);border-bottom:1px solid rgba(139,92,246,.15);
+  }
+  .nav{display:flex;align-items:center;gap:26px;height:64px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;text-decoration:none;color:var(--text)}
+  .brand img{width:36px;height:36px;border-radius:10px;box-shadow:0 0 18px rgba(139,92,246,.55)}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  nav a{color:var(--muted);text-decoration:none;font-size:14.5px;transition:color .2s}
+  nav a:hover{color:var(--text)}
+  .nav .spacer{flex:1}
+  .gh-btn{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:10px;
+    background:var(--grad);color:#0b1020;font-weight:700;font-size:14px;text-decoration:none;
+    box-shadow:0 4px 22px rgba(139,92,246,.35);transition:transform .2s, box-shadow .2s;
+  }
+  .gh-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(34,211,238,.4)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:88px 0 60px;text-align:center;position:relative}
+  .logo-big{
+    width:150px;height:150px;border-radius:34px;
+    box-shadow:0 0 60px rgba(139,92,246,.5), 0 0 120px rgba(34,211,238,.25);
+    animation:float 5s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .hero h1{font-size:clamp(34px,6vw,56px);font-weight:800;letter-spacing:-1px;margin:26px 0 10px}
+  .hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .tag{font-size:clamp(15px,2.4vw,19px);color:var(--muted);max-width:640px;margin:0 auto 30px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
+  .chip{
+    padding:7px 15px;border-radius:999px;font-size:13px;color:#cdd6f7;
+    border:1px solid var(--line);background:rgba(139,92,246,.08);
+  }
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:12px;
+    border:1px solid var(--line);color:var(--text);text-decoration:none;font-weight:600;font-size:14.5px;
+    background:rgba(18,26,53,.6);transition:border-color .2s, transform .2s;
+  }
+  .btn-ghost:hover{border-color:var(--cyan);transform:translateY(-2px)}
+  .btn-main{
+    display:inline-flex;align-items:center;gap:8px;padding:11px 26px;border-radius:12px;
+    background:var(--grad);color:#0b1020;text-decoration:none;font-weight:800;font-size:14.5px;
+    box-shadow:0 6px 26px rgba(139,92,246,.4);transition:transform .2s;
+  }
+  .btn-main:hover{transform:translateY(-2px)}
+
+  /* ---------- секции ---------- */
+  section{padding:56px 0}
+  .sec-title{font-size:clamp(24px,3.6vw,32px);font-weight:800;margin-bottom:8px}
+  .sec-title em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sec-sub{color:var(--muted);margin-bottom:34px;font-size:15px}
+
+  /* ---------- карточки проектов ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+  .card{
+    position:relative;border-radius:18px;padding:26px;overflow:hidden;
+    background:linear-gradient(160deg,rgba(139,92,246,.10),rgba(18,26,53,.85) 45%);
+    border:1px solid var(--line);transition:transform .25s, box-shadow .25s, border-color .25s;
+    display:flex;flex-direction:column;gap:14px;text-decoration:none;color:var(--text);
+  }
+  .card::after{
+    content:"";position:absolute;inset:0;opacity:0;transition:opacity .25s;
+    background:radial-gradient(400px 200px at 80% 0%, rgba(34,211,238,.14), transparent 70%);
+  }
+  .card:hover{transform:translateY(-6px);border-color:rgba(34,211,238,.5);box-shadow:0 18px 46px rgba(0,0,0,.45)}
+  .card:hover::after{opacity:1}
+  .card .icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    font-size:26px;background:rgba(139,92,246,.16);border:1px solid var(--line)}
+  .card h3{font-size:19px;font-weight:700}
+  .card p{color:var(--muted);font-size:14.3px;flex:1}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag-sm{font-size:11.5px;padding:4px 11px;border-radius:999px;background:rgba(34,211,238,.1);
+    border:1px solid rgba(34,211,238,.25);color:#a5e6f5}
+  .card .open{font-size:13px;font-weight:700;color:var(--cyan)}
+
+  /* ---------- обо мне ---------- */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:26px}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr}}
+  .about-card{border-radius:18px;padding:28px;border:1px solid var(--line);background:rgba(18,26,53,.7)}
+  .about-card h3{margin-bottom:12px;font-size:18px}
+  .about-card p{color:var(--muted);font-size:14.5px}
+  .stack{display:flex;flex-direction:column;gap:12px}
+  .stack-row{display:flex;align-items:center;gap:12px;font-size:14px}
+  .stack-row .dot{width:10px;height:10px;border-radius:50%;background:var(--grad);box-shadow:0 0 10px rgba(139,92,246,.7)}
+  .stats-img{width:100%;border-radius:14px;margin-top:6px}
+
+  /* ---------- футер ---------- */
+  footer{border-top:1px solid rgba(139,92,246,.15);padding:34px 0 44px;margin-top:30px}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:13.5px}
+  .foot a{color:var(--cyan);text-decoration:none}
+  .foot .brand img{width:30px;height:30px;border-radius:8px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#"><img src="assets/logo.png" alt="DF"><span><b>Dolov07KBR</b></span></a>
+    <div class="spacer"></div>
+    <nav style="display:flex;gap:22px">
+      <a href="#projects">Проекты</a>
+      <a href="#about">Обо мне</a>
+    </nav>
+    <a class="gh-btn" href="https://github.com/Dolov07KBR" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      GitHub
+    </a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <img class="logo-big" src="assets/logo.png" alt="Логотип DF">
+    <h1>Привет, я <span>Dolov07KBR</span></h1>
+    <p class="tag">Делаю практичные инструменты: Telegram-боты для продажи VPN, надстройки для обхода блокировок, IPTV-плейлисты. Всё — с открытым исходным кодом и установкой в одну команду.</p>
+    <div class="chips">
+      <span class="chip">🐍 Python / aiogram 3</span>
+      <span class="chip">💳 ЮKassa · Telegram Stars</span>
+      <span class="chip">🛡 3x-ui · Marzban · Zapret</span>
+      <span class="chip">🐳 Docker · systemd</span>
+      <span class="chip">📺 IPTV / M3U</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn-main" href="#projects">🚀 Смотреть проекты</a>
+      <a class="btn-ghost" href="https://github.com/Dolov07KBR?tab=repositories" target="_blank" rel="noopener">Все репозитории</a>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="sec-title">Мои <em>проекты</em></h2>
+    <p class="sec-sub">Главное из того, что я разрабатываю и поддерживаю.</p>
+    <div class="grid">
+
+      <a class="card" href="https://github.com/Dolov07KBR/DF-VPN-Bot" target="_blank" rel="noopener">
+        <div class="icon">🤖</div>
+        <h3>DF VPN Bot</h3>
+        <p>Telegram-бот продажи VPN-подписок на aiogram 3: оплата картами РФ/СБП через ЮKassa, Telegram Stars и баланс, автовыдача ключей из пула или панелей 3x-ui / Marzban, рефералка, промокоды, тикеты и админ-панель. Установка на VPS одной командой.</p>
+        <div class="tags"><span class="tag-sm">Python</span><span class="tag-sm">aiogram 3</span><span class="tag-sm">ЮKassa</span><span class="tag-sm">3x-ui</span><span class="tag-sm">Marzban</span></div>
+        <span class="open">Открыть репозиторий →</span>
+      </a>
+
+      <a class="card" href="https://github.com/Dolov07KBR/Zapret-Manager-PLUS" target="_blank" rel="noopener">
+        <div class="icon">🧩</div>
+        <h3>Zapret Manager PLUS</h3>
+        <p>Надстройка над Zapret-Manager: диагностика блокировок до подбора стратегии, статистика стратегий, откат изменений, мастер «что не работает», тонкая настройка игрового трафика и лёгкая веб-панель. Ставится рядом с оригиналом, ничего не ломая.</p>
+        <div class="tags"><span class="tag-sm">Shell</span><span class="tag-sm">Zapret</span><span class="tag-sm">OpenWrt</span><span class="tag-sm">DPI-обход</span></div>
+        <span class="open">Открыть репозиторий →</span>
+      </a>
+
+      <a class="card" href="https://github.com/Dolov07KBR/DF_IPTV" target="_blank" rel="noopener">
+        <div class="icon">📺</div>
+        <h3>DF_IPTV</h3>
+        <p>Бесплатные IPTV-плейлисты в формате M3U: ТВ-каналы, фильмы, музыка и радио. Подборки рассортированы по тематикам и периодически обновляются — подключайте в любом плеере.</p>
+        <div class="tags"><span class="tag-sm">M3U</span><span class="tag-sm">IPTV</span><span class="tag-sm">Плейлисты</span></div>
+        <span class="open">Открыть репозиторий →</span>
+      </a>
+
+    </div>
+
+    <h2 class="sec-title" style="margin-top:56px">Также участвую</h2>
+    <p class="sec-sub">Форки и подборки, которые я поддерживаю в актуальном состоянии.</p>
+    <div class="grid">
+      <a class="card" href="https://github.com/Dolov07KBR/vpn-configs-for-russia" target="_blank" rel="noopener">
+        <div class="icon">🗽</div>
+        <h3>vpn-configs-for-russia</h3>
+        <p>Поддерживаю актуальную копию подборки бесплатных VPN-конфигураций, работающих в России: белые списки и их обход.</p>
+        <div class="tags"><span class="tag-sm">VPN</span><span class="tag-sm">Конфиги</span></div>
+        <span class="open">Открыть →</span>
+      </a>
+      <a class="card" href="https://github.com/Dolov07KBR/VeronaTV" target="_blank" rel="noopener">
+        <div class="icon">🎬</div>
+        <h3>VeronaTV</h3>
+        <p>Ресурсы и плейлисты для онлайн-просмотра ТВ и фильмов.</p>
+        <div class="tags"><span class="tag-sm">TV</span><span class="tag-sm">Плейлисты</span></div>
+        <span class="open">Открыть →</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="sec-title">Обо <em>мне</em></h2>
+    <p class="sec-sub">Коротко о том, чем я занимаюсь и что использую.</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>👤 Dolov07KBR</h3>
+        <p>Пишу утилиты, которые решают конкретные задачи: продать VPN-подписку в Telegram в пару кликов, понять, почему не открывается YouTube, и посмотреть ТВ без плясок с бубном. Люблю, когда всё ставится одной командой и работает из коробки — поэтому каждый проект идёт с установщиком, документацией и автообновлением.</p>
+        <p style="margin-top:12px">Все проекты открыты: используйте, форкайте и присылайте идеи через issues.</p>
+        <img class="stats-img" src="https://github-readme-stats.vercel.app/api?username=Dolov07KBR&show_icons=true&theme=tokyonight&hide_border=true&bg_color=121a35&title_color=8b5cf6&icon_color=22d3ee" alt="GitHub статистика Dolov07KBR" loading="lazy">
+      </div>
+      <div class="about-card">
+        <h3>🧰 Стек</h3>
+        <div class="stack">
+          <div class="stack-row"><span class="dot"></span>Python · aiogram 3 · aiohttp</div>
+          <div class="stack-row"><span class="dot"></span>SQLite · asyncio · Docker</div>
+          <div class="stack-row"><span class="dot"></span>ЮKassa · Telegram Stars API</div>
+          <div class="stack-row"><span class="dot"></span>3x-ui · Marzban · VLESS/Reality</div>
+          <div class="stack-row"><span class="dot"></span>Shell · Zapret · OpenWrt</div>
+          <div class="stack-row"><span class="dot"></span>systemd · nginx · GitHub Actions</div>
+        </div>
+        <h3 style="margin-top:22px">📬 Связь</h3>
+        <div class="stack">
+          <div class="stack-row"><span class="dot"></span><a href="https://github.com/Dolov07KBR" style="color:var(--cyan);text-decoration:none">github.com/Dolov07KBR</a></div>
+          <div class="stack-row"><span class="dot"></span><a href="https://github.com/Dolov07KBR/DF-VPN-Bot/issues" style="color:var(--cyan);text-decoration:none">issues в DF-VPN-Bot</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="#"><img src="assets/logo.png" alt="DF"><span>Dolov07KBR</span></a>
+    <span>© 2026 Dolov07KBR · сделано с ❤️ и одной командой установки</span>
+    <span><a href="https://github.com/Dolov07KBR" target="_blank" rel="noopener">GitHub</a> · <a href="https://github.com/Dolov07KBR?tab=repositories" target="_blank" rel="noopener">Репозитории</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
